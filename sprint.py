@@ -13,8 +13,6 @@ collection.insert_one(post)
 '''
 
 
-
-
 def lookUpPlayer(userName):
     ca = certifi.where()
     cluster = MongoClient("mongodb+srv://Calesi19:Paola143@calesi.gn4hi.mongodb.net/?retryWrites=true&w=majority", tlsCAFile = ca)
@@ -22,5 +20,39 @@ def lookUpPlayer(userName):
     collection = db["playerScores"]
     return collection.find_one({"userName": userName})["score"]
 
-score = lookUpPlayer("Calesi19")
+def isPlayerInDatabase(userName):
+    ca = certifi.where()
+    cluster = MongoClient("mongodb+srv://Calesi19:Paola143@calesi.gn4hi.mongodb.net/?retryWrites=true&w=majority", tlsCAFile = ca)
+    db = cluster["TypeSpace"]
+    collection = db["playerScores"]
+    exist_count = collection.find({"userName": userName}).count()
+    
+    if exist_count>=1:
+        return True
+    else:
+        return False
+
+def createEntry(userName, score):
+    ca = certifi.where()
+    cluster = MongoClient("mongodb+srv://Calesi19:Paola143@calesi.gn4hi.mongodb.net/?retryWrites=true&w=majority", tlsCAFile = ca)
+    db = cluster["TypeSpace"]
+    collection = db["playerScores"]
+    collection.insert_one({"userName": userName, "score": score})
+
+def updateEntry(userName, score):
+    ca = certifi.where()
+    cluster = MongoClient("mongodb+srv://Calesi19:Paola143@calesi.gn4hi.mongodb.net/?retryWrites=true&w=majority", tlsCAFile = ca)
+    db = cluster["TypeSpace"]
+    collection = db["playerScores"]
+    
+    if collection.find_one({"userName": userName})["score"] < score:
+        myquery = {"userName": userName }
+        newvalues = { "$set": { "score": score } }
+        collection.update_one(myquery, newvalues)
+
+
+
+
+
+score = isPlayerInDatabase("Calesi19")
 print(score)
