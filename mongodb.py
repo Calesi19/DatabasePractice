@@ -44,6 +44,10 @@ class MongoDatabase:
             score = entry["score"]
             entries[username] = score
         return entries
+    
+    def populate(self, entries):
+        for value in entries:
+            self.createEntry(value, entries[values])
 
 '''
 mongo = MongoDatabase()

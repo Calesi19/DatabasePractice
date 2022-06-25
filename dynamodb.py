@@ -71,16 +71,14 @@ class DynamoDB:
                 entries[userName] = score
         return entries
 
-    def populate(entries):
+    def populate(self, entries):
         for value in entries:
             self.createEntry(value, entries[values])
         
 
 '''
 db = DynamoDB()
-db.createEntry("test1", 400)
-db.createEntry("test4", 2)
-#db.updateEntry("Carlos", 5)
+db.createEntry("tes45", 400)
 db.readEntries()
 
 dic = db.getEntries()

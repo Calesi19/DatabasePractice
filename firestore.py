@@ -45,6 +45,10 @@ class Firestore:
             entries[username] = score
         return entries
 
+    def populate(self, entries):
+        for value in entries:
+            self.createEntry(value, entries[values])
+
 
 '''
 firebase = Firestore()
