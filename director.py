@@ -68,6 +68,3 @@ class Director:
                 database.deleteAll()
                 self.clear()
                 print("[DATABASE CLEARED]")
-
-        
-        

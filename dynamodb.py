@@ -4,8 +4,8 @@ class DynamoDB:
         import boto3
         import requests
         import constants
-        self.__client = boto3.client('dynamodb',aws_access_key_id='AKIAZRXTX5EAJAGAFLNI', aws_secret_access_key='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', region_name='us-west-1')
-        self.__resource = boto3.resource('dynamodb',aws_access_key_id='AKIAZRXTX5EAJAGAFLNI', aws_secret_access_key='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', region_name='us-west-1')
+        self.__client = boto3.client('dynamodb',aws_access_key_id=constants.AWSACCESSKEYID, aws_secret_access_key=constants.AWSSECRETKEY, region_name='us-west-1')
+        self.__resource = boto3.resource('dynamodb',aws_access_key_id=constants.AWSACCESSKEYID, aws_secret_access_key=constants.AWSSECRETKEY, region_name='us-west-1')
         self.__table = self.__resource.Table('playerScores')
         self.__name = "DynamoDB"
 
