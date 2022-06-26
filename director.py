@@ -18,8 +18,8 @@ class Director:
 
         while True:
             choice = None
-            print(f"\nSelect one of the following options:\n1.Create New Entry\n2.Read all entries\n3.Update Entry\n4.Delete Entry\n5.Delete All Entries")
-            while choice not in ["1", "2", "3", "4", "5"]:
+            print(f"\nSelect one of the following options:\n1.Create New Entry\n2.Read all entries\n3.Update Entry\n4.Delete Entry\n5.Delete All Entries\n6.Transfer Data")
+            while choice not in ["1", "2", "3", "4", "5", "6"]:
                 choice = (input("\nEnter a number choice >"))
 
             choice = int(choice)
@@ -68,3 +68,18 @@ class Director:
                 database.deleteAll()
                 self.clear()
                 print("[DATABASE CLEARED]")
+
+            elif choice == 6:
+                database2 = -1
+                print(f"\n{database.getDatabaseName()} has been selected.\nWhich database would you like to transfer the data into:\n1.Firestore\n2.MongoDB\n3.DynamoDB")
+                while database2 not in ["1", "2", "3"] or database2 == dbchoice:
+                    database2 = input("\nEnter a number choice >")
+
+                database2 = self.__databases[int(database2) - 1]
+                entries = {}
+
+                entries = database.getEntries()
+                database2.populate(entries)
+                self.clear()
+                print("[DATA TRANSFERRED]")
+

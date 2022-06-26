@@ -46,8 +46,8 @@ class MongoDatabase:
         return entries
     
     def populate(self, entries):
-        for value in entries:
-            self.createEntry(value, entries[values])
+        for key in entries:
+            self.createEntry(key, entries[key])
 
 '''
 mongo = MongoDatabase()
